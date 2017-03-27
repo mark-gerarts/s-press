@@ -1,0 +1,13 @@
+{
+    "name": "mgerarts/s-press",
+    "description": "S-expression parser & serializer",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mark Gerarts",
+            "email": "mark.gerarts@gmail.com"
+        }
+    ],
+    "require": {}
+}
