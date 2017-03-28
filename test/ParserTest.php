@@ -1,13 +1,14 @@
 <?php
 
-use \Spress\Parser;
+use \Spress\Parser\Parser;
 
 class ParserTest extends \PHPUnit\Framework\TestCase
 {
-    public function testTestsAreWorking()
+    public function testItParsesAnEmptyList()
     {
         $parser = new Parser;
+        $parsedList = $parser->parse('()');
 
-        $this->assertTrue(true);
+        $this->assertEquals([], $parsedList);
     }
 }
