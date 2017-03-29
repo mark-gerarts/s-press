@@ -2,6 +2,8 @@
 
 namespace Spress\Forms;
 
+use Spress\Exception\InConvertibleException;
+
 /**
  * Class SString
  *
@@ -22,6 +24,22 @@ class SString extends SExpression
     public function __construct(string $string)
     {
         $this->value = $string;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function toList(): array
+    {
+        throw new InConvertibleException();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function isList(): bool
+    {
+        return false;
     }
 
     /**

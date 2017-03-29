@@ -9,5 +9,7 @@ namespace Spress\Forms;
  */
 abstract class SExpression
 {
-    //
+    abstract public function toList(): array;
+
+    abstract public function isList(): bool;
 }

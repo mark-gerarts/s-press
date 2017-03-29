@@ -2,6 +2,8 @@
 
 namespace Spress\Forms;
 
+use Spress\Exception\InConvertibleException;
+
 /**
  * Class SSymbol
  *
@@ -23,6 +25,23 @@ class SSymbol extends SExpression
     {
         $this->value = $symbol;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function toList(): array
+    {
+        throw new InConvertibleException();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function isList(): bool
+    {
+        return false;
+    }
+
 
     /**
      * @return string
