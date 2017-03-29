@@ -52,6 +52,6 @@ class SCons extends SExpression
      */
     public function __toString(): string
     {
-
+        return '(' . implode(' ', $this->toList()) . ')';
     }
 }
