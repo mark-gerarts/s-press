@@ -16,5 +16,4 @@ class Lexer implements LexerInterface
     {
         return [];
     }
-
 }
