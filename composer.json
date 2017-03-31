@@ -11,7 +11,8 @@
     ],
     "require": {},
     "require-dev": {
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^6.0",
+        "symfony/var-dumper": "^3.2"
     },
     "autoload": {
         "psr-4": {"Spress\\": "src/"}
