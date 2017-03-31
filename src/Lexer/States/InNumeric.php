@@ -3,31 +3,22 @@
 namespace Spress\Lexer\States;
 
 /**
- * Class InWhitespace
+ * Class InNumeric
  *
  * @package Spress\Lexer\States
  */
-class InWhitespace extends LexerState
+class InNumeric extends LexerState
 {
     /**
      * @inheritdoc
      */
     public function process(string $char): LexerState
     {
-        if (ctype_space($char)) {
-            return new InWhitespace;
-        }
         if (is_numeric($char)) {
             return new InNumeric;
         }
 
-        switch ($char) {
-            case ';':
-            case '(':
-            case ')':
-            default:
-                return new InWhitespace;
-        }
+        return new InWhitespace;
     }
 
     /**
