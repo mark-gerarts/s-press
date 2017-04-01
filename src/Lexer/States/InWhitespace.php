@@ -2,6 +2,9 @@
 
 namespace Spress\Lexer\States;
 
+use Spress\Lexer\Tokens\LEFT_PAR;
+use Spress\Lexer\Tokens\RIGHT_PAR;
+
 /**
  * Class InWhitespace
  *
@@ -15,18 +18,22 @@ class InWhitespace extends LexerState
     public function process(string $char): LexerState
     {
         if (ctype_space($char)) {
-            return new InWhitespace;
+            return $this;
         }
         if (is_numeric($char)) {
-            return new InNumeric;
+            return new InNumeric($char);
         }
 
         switch ($char) {
             case ';':
             case '(':
-            case ')':
-            default:
+                $this->emit(new LEFT_PAR);
                 return new InWhitespace;
+            case ')':
+                $this->emit(new RIGHT_PAR);
+                return new InWhitespace;
+            default:
+                return $this;
         }
     }
 

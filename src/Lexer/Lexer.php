@@ -18,6 +18,11 @@ class Lexer implements LexerInterface
     protected $state;
 
     /**
+     * @var array
+     */
+    protected $tokens = [];
+
+    /**
      * Lexer constructor.
      */
     public function __construct()
@@ -33,11 +38,20 @@ class Lexer implements LexerInterface
         $input = new StringIterator($input);
 
         foreach ($input as $char) {
-            // dostuff
+            $currentState = $this->state;
+            $nextState = $this->state->process($char);
+            $this->state = $nextState;
+
+            $token = $currentState->getToken();
+            if ($token) {
+                $this->tokens[] = $token;
+            }
+
         }
 
-        return [];
+        $tokens = $this->tokens;
+        $this->tokens = [];
+
+        return $tokens;
     }
-
-
 }

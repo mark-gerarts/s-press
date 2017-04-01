@@ -2,6 +2,8 @@
 
 namespace Spress\Lexer\States;
 
+use Spress\Lexer\Tokens\SExpToken;
+
 /**
  * Class LexerState
  *
@@ -9,6 +11,11 @@ namespace Spress\Lexer\States;
  */
 abstract class LexerState
 {
+    /**
+     * @var SExpToken
+     */
+    protected $token;
+
     /**
      * @param string $char
      * @return LexerState
@@ -21,18 +28,26 @@ abstract class LexerState
     abstract public function processEOF(): LexerState;
 
     /**
-     * @return LexerState
+     * @return SExpToken
      */
-    public static function inWhitespace(): LexerState
+    public function getToken()
     {
-        return new InWhitespace();
+        return $this->token;
+    }
+
+    /**
+     * @param SExpToken $token
+     */
+    protected function emit(SExpToken $token)
+    {
+        $this->token = $token;
     }
 
     /**
      * @return LexerState
      */
-    public static function inSymbol(): LexerState
+    public static function inWhitespace(): LexerState
     {
-        return new InSymbol();
+        return new InWhitespace();
     }
 }
