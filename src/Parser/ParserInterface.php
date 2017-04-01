@@ -2,6 +2,8 @@
 
 namespace Spress\Parser;
 
+use Spress\Forms\SExpression;
+
 /**
  * Interface ParserInterface
  *
@@ -11,7 +13,7 @@ interface ParserInterface
 {
     /**
      * @param string $input
-     * @return array
+     * @return SExpression
      */
-    public function parse(string $input): array;
+    public function parse(string $input): SExpression;
 }
