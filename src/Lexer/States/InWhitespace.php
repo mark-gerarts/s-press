@@ -17,7 +17,7 @@ class InWhitespace extends LexerState
      */
     public function process(string $char): LexerState
     {
-        if (ctype_space($char)) {
+        if ($this->isWhitespace($char)) {
             return new InWhitespace;
         }
         if (is_numeric($char)) {
@@ -34,7 +34,7 @@ class InWhitespace extends LexerState
                 $this->emit(new RightPar);
                 return new InWhitespace;
             default:
-                return new InWhitespace;
+                return new InId($char);
         }
     }
 

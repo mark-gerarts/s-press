@@ -4,7 +4,7 @@ use \Spress\Lexer\Lexer;
 use \Spress\Lexer\Tokens\LeftPar;
 use \Spress\Lexer\Tokens\RightPar;
 use \Spress\Lexer\Tokens\Integer;
-use \Spress\Lexer\Tokens\Symbol;
+use \Spress\Lexer\Tokens\Id;
 
 class LexerTest extends \PHPUnit\Framework\TestCase
 {
@@ -59,8 +59,8 @@ class LexerTest extends \PHPUnit\Framework\TestCase
             'It should parse symbols' => [
                 "(symbol another-symbol)", [
                     new LeftPar,
-                    new Symbol('symbol'),
-                    new Symbol('another-symbol'),
+                    new Id('symbol'),
+                    new Id('another-symbol'),
                     new RightPar
                 ]
             ]

@@ -48,4 +48,13 @@ abstract class LexerState
     {
         $this->token = $token;
     }
+
+    /**
+     * @param $char
+     * @return bool
+     */
+    protected function isWhitespace($char): bool
+    {
+        return trim($char) == '';
+    }
 }

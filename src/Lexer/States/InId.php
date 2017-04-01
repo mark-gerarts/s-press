@@ -3,27 +3,28 @@
 namespace Spress\Lexer\States;
 
 use Spress\Exception\UnexpectedCharacterException;
+use Spress\Lexer\Tokens\Id;
 
 /**
- * Class InSymbol
+ * Class InId
  *
  * @package Spress\Lexer\States
  */
-class InSymbol extends LexerState
+class InId extends LexerState
 {
     /**
      * @var string
      */
-    protected $symbol;
+    protected $id;
 
     /**
-     * InSymbol constructor.
+     * InId constructor.
      *
-     * @param string $symbol
+     * @param string $id
      */
-    public function __construct(string $symbol)
+    public function __construct(string $id)
     {
-        $this->symbol = $symbol;
+        $this->id = $id;
     }
 
     /**
@@ -31,9 +32,12 @@ class InSymbol extends LexerState
      */
     public function process(string $char): LexerState
     {
-        if (ctype_space($char)) {
-
+        if (in_array($char, ['(', ')', ';']) || $this->isWhitespace($char)) {
+            $this->emit(new Id($this->id));
+            return new StepBack;
         }
+
+        return new InId($this->id . $char);
     }
 
     /**
@@ -43,5 +47,4 @@ class InSymbol extends LexerState
     {
         throw new UnexpectedCharacterException('EOF');
     }
-
 }
