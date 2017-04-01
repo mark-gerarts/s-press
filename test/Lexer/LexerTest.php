@@ -41,6 +41,13 @@ class LexerTest extends \PHPUnit\Framework\TestCase
                     new INTEGER(123),
                     new RIGHT_PAR
                 ]
+            ],
+            'It should ignore whitespace' => [
+                " (   123 \n\t\r\0\x0B  )   ", [
+                    new LEFT_PAR,
+                    new INTEGER(123),
+                    new RIGHT_PAR
+                ]
             ]
         ];
     }
