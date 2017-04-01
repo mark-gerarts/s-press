@@ -26,6 +26,7 @@ class InWhitespace extends LexerState
 
         switch ($char) {
             case ';':
+                return new InComment;
             case '(':
                 $this->emit(new LEFT_PAR);
                 return new InWhitespace;

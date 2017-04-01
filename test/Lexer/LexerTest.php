@@ -48,6 +48,12 @@ class LexerTest extends \PHPUnit\Framework\TestCase
                     new INTEGER(123),
                     new RIGHT_PAR
                 ]
+            ],
+            'It should ignore comments' => [
+                "( ; This is a comment!;)))\n )", [
+                    new LEFT_PAR,
+                    new RIGHT_PAR
+                ]
             ]
         ];
     }
