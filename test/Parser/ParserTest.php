@@ -3,7 +3,6 @@
 namespace Spress\Parser;
 
 use \Spress\Lexer\Lexer;
-use \Spress\Forms\SNil;
 
 class ParserTest extends \PHPUnit\Framework\TestCase
 {
