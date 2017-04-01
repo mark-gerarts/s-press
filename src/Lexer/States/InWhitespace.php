@@ -2,8 +2,8 @@
 
 namespace Spress\Lexer\States;
 
-use Spress\Lexer\Tokens\LEFT_PAR;
-use Spress\Lexer\Tokens\RIGHT_PAR;
+use Spress\Lexer\Tokens\LeftPar;
+use Spress\Lexer\Tokens\RightPar;
 
 /**
  * Class InWhitespace
@@ -28,10 +28,10 @@ class InWhitespace extends LexerState
             case ';':
                 return new InComment;
             case '(':
-                $this->emit(new LEFT_PAR);
+                $this->emit(new LeftPar);
                 return new InWhitespace;
             case ')':
-                $this->emit(new RIGHT_PAR);
+                $this->emit(new RightPar);
                 return new InWhitespace;
             default:
                 return new InWhitespace;

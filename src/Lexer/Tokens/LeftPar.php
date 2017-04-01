@@ -3,11 +3,11 @@
 namespace Spress\Lexer\Tokens;
 
 /**
- * Class LEFT_PAR
+ * Class LeftPar
  *
  * @package Spress\Lexer\Tokens
  */
-final class LEFT_PAR extends SExpToken
+final class LeftPar extends SExpToken
 {
     /**
      * @return string

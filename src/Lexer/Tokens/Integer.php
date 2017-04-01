@@ -3,11 +3,11 @@
 namespace Spress\Lexer\Tokens;
 
 /**
- * Class INTEGER
+ * Class Integer
  *
  * @package Spress\Lexer\Tokens
  */
-final class INTEGER extends SExpToken
+final class Integer extends SExpToken
 {
     /**
      * @var int
@@ -15,7 +15,7 @@ final class INTEGER extends SExpToken
     public $value;
 
     /**
-     * INTEGER constructor.
+     * Integer constructor.
      *
      * @param int $integer
      */

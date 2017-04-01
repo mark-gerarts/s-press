@@ -2,7 +2,7 @@
 
 namespace Spress\Lexer\States;
 
-use Spress\Lexer\Tokens\INTEGER;
+use Spress\Lexer\Tokens\Integer;
 
 /**
  * Class InNumeric
@@ -35,7 +35,7 @@ class InNumeric extends LexerState
             return new InNumeric($this->number . $char);
         }
 
-        $this->emit(new INTEGER((int) $this->number));
+        $this->emit(new Integer((int) $this->number));
 
         // We have to return a StepBack state because the character has to be
         // processed again.
