@@ -2,6 +2,7 @@
 
 namespace Spress\Lexer;
 
+use Spress\Lexer\States\InWhitespace;
 use Spress\Lexer\States\LexerState;
 use Spress\Lexer\States\StepBack;
 use Spress\StringIterator;
@@ -28,7 +29,8 @@ class Lexer implements LexerInterface
      */
     public function __construct()
     {
-        $this->state = LexerState::inWhitespace();
+        // InWhiteSpace is the default state.
+        $this->state = new InWhitespace;
     }
 
     /**
@@ -42,6 +44,7 @@ class Lexer implements LexerInterface
             $this->processChar($char);
         }
 
+        // Reset the tokens so that the state isn't remembered.
         $tokens = $this->tokens;
         $this->tokens = [];
 
@@ -53,15 +56,17 @@ class Lexer implements LexerInterface
      */
     protected function processChar(string $char)
     {
-        $currentState = $this->state;
-        $nextState = $this->state->process($char);
-        $this->state = $nextState;
+        $previousState = $this->state;
+        $newState = $this->state->process($char);
+        $this->state = $newState;
 
-        $token = $currentState->getToken();
+        // getToken() will only return a value if the state emitted a token.
+        $token = $previousState->getToken();
         if ($token) {
             $this->tokens[] = $token;
         }
 
+        // Process the character again if needed.
         if ($this->state instanceof StepBack) {
             $this->processChar($char);
         }

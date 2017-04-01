@@ -33,7 +33,7 @@ class InWhitespace extends LexerState
                 $this->emit(new RIGHT_PAR);
                 return new InWhitespace;
             default:
-                return $this;
+                return new InWhitespace;
         }
     }
 

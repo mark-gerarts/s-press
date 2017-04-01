@@ -17,12 +17,16 @@ abstract class LexerState
     protected $token;
 
     /**
+     * Processes a single character and returns a matching state.
+     *
      * @param string $char
      * @return LexerState
      */
     abstract public function process(string $char): LexerState;
 
     /**
+     * Processes end of file.
+     *
      * @return LexerState
      */
     abstract public function processEOF(): LexerState;
@@ -36,18 +40,12 @@ abstract class LexerState
     }
 
     /**
+     * Called when exiting a state. Sets the retrieved token value.
+     *
      * @param SExpToken $token
      */
     protected function emit(SExpToken $token)
     {
         $this->token = $token;
-    }
-
-    /**
-     * @return LexerState
-     */
-    public static function inWhitespace(): LexerState
-    {
-        return new InWhitespace();
     }
 }

@@ -37,6 +37,8 @@ class InNumeric extends LexerState
 
         $this->emit(new INTEGER((int) $this->number));
 
+        // We have to return a StepBack state because the character has to be
+        // processed again.
         return new StepBack;
     }
 

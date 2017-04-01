@@ -14,6 +14,7 @@ class InComment extends LexerState
      */
     public function process(string $char): LexerState
     {
+        // A comment lasts until the next newline.
         return $char == '\n'
             ? new InWhitespace
             : new InComment;
