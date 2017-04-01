@@ -36,7 +36,10 @@ class SCons extends SExpression
      */
     public function toList(): array
     {
-        return array_unshift($this->cdr->toList(), $this->car);
+        $cdr = $this->cdr->toList();
+        array_unshift($cdr, $this->car);
+
+        return $cdr;
     }
 
     /**
@@ -52,6 +55,10 @@ class SCons extends SExpression
      */
     public function __toString(): string
     {
-        return '(' . implode(' ', $this->toList()) . ')';
+        $parts = array_map(function (SExpression $exp) {
+            return (string) $exp;
+        }, $this->toList());
+
+        return '(' . implode(' ', $parts) . ')';
     }
 }
