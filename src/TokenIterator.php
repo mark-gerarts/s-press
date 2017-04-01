@@ -22,7 +22,7 @@ class TokenIterator implements TokenIteratorInterface
     /**
      * @var int
      */
-    protected $position = 0;
+    protected $position = -1;
 
     /**
      * TokenIterator constructor.
@@ -88,7 +88,7 @@ class TokenIterator implements TokenIteratorInterface
     public function eatLeftPar()
     {
         $this->next();
-        if ($this->current() instanceof LeftPar) {
+        if (!($this->current() instanceof LeftPar)) {
             throw new UnexpectedCharacterException($this->current(), '(');
         }
     }
@@ -99,7 +99,7 @@ class TokenIterator implements TokenIteratorInterface
     public function eatRightPar()
     {
         $this->next();
-        if ($this->current() instanceof RightPar) {
+        if (!($this->current() instanceof RightPar)) {
             throw new UnexpectedCharacterException($this->current(), ')');
         }
     }
