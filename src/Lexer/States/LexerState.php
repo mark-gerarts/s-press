@@ -19,4 +19,20 @@ abstract class LexerState
      * @return LexerState
      */
     abstract public function processEOF(): LexerState;
+
+    /**
+     * @return LexerState
+     */
+    public static function inWhitespace(): LexerState
+    {
+        return new InWhitespace();
+    }
+
+    /**
+     * @return LexerState
+     */
+    public static function inSymbol(): LexerState
+    {
+        return new InSymbol();
+    }
 }
