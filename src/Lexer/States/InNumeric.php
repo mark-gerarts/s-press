@@ -14,7 +14,7 @@ class InNumeric extends LexerState
     /**
      * @var string
      */
-    protected $buffer = '';
+    protected $number = '';
 
     /**
      * InNumeric constructor.
@@ -23,7 +23,7 @@ class InNumeric extends LexerState
      */
     public function __construct($number)
     {
-        $this->buffer = $number;
+        $this->number = $number;
     }
 
     /**
@@ -32,13 +32,12 @@ class InNumeric extends LexerState
     public function process(string $char): LexerState
     {
         if (is_numeric($char)) {
-            $this->buffer .= $char;
-            return $this;
+            return new InNumeric($this->number . $char);
         }
 
-        $this->emit(new INTEGER((int) $this->buffer));
+        $this->emit(new INTEGER((int) $this->number));
 
-        return new InWhitespace;
+        return new StepBack;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Spress\Lexer;
 
 use Spress\Lexer\States\LexerState;
+use Spress\Lexer\States\StepBack;
 use Spress\StringIterator;
 
 /**
@@ -38,20 +39,31 @@ class Lexer implements LexerInterface
         $input = new StringIterator($input);
 
         foreach ($input as $char) {
-            $currentState = $this->state;
-            $nextState = $this->state->process($char);
-            $this->state = $nextState;
-
-            $token = $currentState->getToken();
-            if ($token) {
-                $this->tokens[] = $token;
-            }
-
+            $this->processChar($char);
         }
 
         $tokens = $this->tokens;
         $this->tokens = [];
 
         return $tokens;
+    }
+
+    /**
+     * @param string $char
+     */
+    protected function processChar(string $char)
+    {
+        $currentState = $this->state;
+        $nextState = $this->state->process($char);
+        $this->state = $nextState;
+
+        $token = $currentState->getToken();
+        if ($token) {
+            $this->tokens[] = $token;
+        }
+
+        if ($this->state instanceof StepBack) {
+            $this->processChar($char);
+        }
     }
 }

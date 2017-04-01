@@ -18,7 +18,7 @@ class InWhitespace extends LexerState
     public function process(string $char): LexerState
     {
         if (ctype_space($char)) {
-            return $this;
+            return new InWhitespace;
         }
         if (is_numeric($char)) {
             return new InNumeric($char);
