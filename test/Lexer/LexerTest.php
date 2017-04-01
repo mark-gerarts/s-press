@@ -4,6 +4,7 @@ use \Spress\Lexer\Lexer;
 use \Spress\Lexer\Tokens\LeftPar;
 use \Spress\Lexer\Tokens\RightPar;
 use \Spress\Lexer\Tokens\Integer;
+use \Spress\Lexer\Tokens\Symbol;
 
 class LexerTest extends \PHPUnit\Framework\TestCase
 {
@@ -30,13 +31,13 @@ class LexerTest extends \PHPUnit\Framework\TestCase
     {
         return [
             'It should lex an empty list' => [
-                '()', [
+                "()", [
                     new LeftPar,
                     new RightPar
                 ]
             ],
             'It should parse an integer' => [
-                '(123)', [
+                "(123)", [
                     new LeftPar,
                     new Integer(123),
                     new RightPar
@@ -55,6 +56,14 @@ class LexerTest extends \PHPUnit\Framework\TestCase
                     new RightPar
                 ]
             ],
+            'It should parse symbols' => [
+                "(symbol another-symbol)", [
+                    new LeftPar,
+                    new Symbol('symbol'),
+                    new Symbol('another-symbol'),
+                    new RightPar
+                ]
+            ]
         ];
     }
 }
