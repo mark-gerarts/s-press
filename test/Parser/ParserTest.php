@@ -7,11 +7,16 @@ use \Spress\Forms\SNil;
 
 class ParserTest extends \PHPUnit\Framework\TestCase
 {
-    public function testItParsesAnEmptyList()
+    public function testItHandlesALongList()
     {
         $parser = new Parser(new Lexer());
-        $parsedList = $parser->parse('()');
 
-        $this->assertEquals(new SNil(), $parsedList);
+        $longTest = '(';
+        $longTest .= implode(' ', range(1, 1000));
+        $longTest .= ')';
+
+        $parsedList = $parser->parse($longTest);
+
+        $this->assertEquals($longTest, (string) $parsedList);
     }
 }
