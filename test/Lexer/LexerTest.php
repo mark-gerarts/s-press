@@ -1,14 +1,47 @@
 <?php
 
 use \Spress\Lexer\Lexer;
+use \Spress\Lexer\Tokens\LEFT_PAR;
+use \Spress\Lexer\Tokens\RIGHT_PAR;
+use \Spress\Lexer\Tokens\INTEGER;
 
 class LexerTest extends \PHPUnit\Framework\TestCase
 {
-    public function testItLexesAnEmptyList()
-    {
-        $lexer = new Lexer();
-        $parsedList = $lexer->lex('()');
+    /**
+     * @var Lexer
+     */
+    private $lexer;
 
-        $this->assertEquals([], $parsedList);
+    public function setUp()
+    {
+        $this->lexer = new Lexer();
+    }
+
+    public function testItLexesCorrectly()
+    {
+        foreach ($this->getTestCases() as $description => $testCase) {
+            list($input, $expectedOutput) = $testCase;
+            $actualOutput = $this->lexer->lex($input);
+            $this->assertEquals($expectedOutput, $actualOutput, $description);
+        }
+    }
+
+    protected function getTestCases()
+    {
+        return [
+            'It should lex an empty list' => [
+                '()', [
+                    new LEFT_PAR,
+                    new RIGHT_PAR
+                ]
+            ],
+            'It should parse an integer' => [
+                '(123)', [
+                    new LEFT_PAR,
+                    new INTEGER(123),
+                    new RIGHT_PAR
+                ]
+            ]
+        ];
     }
 }
