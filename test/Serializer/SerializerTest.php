@@ -1,6 +1,6 @@
 <?php
 
-use Spress\Serializer\Serializer;
+namespace Spress\Serializer;
 
 class SerializerTest extends \PHPUnit\Framework\TestCase
 {

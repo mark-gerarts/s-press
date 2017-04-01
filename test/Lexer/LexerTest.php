@@ -1,6 +1,7 @@
 <?php
 
-use \Spress\Lexer\Lexer;
+namespace Spress\Lexer;
+
 use \Spress\Lexer\Tokens\LeftPar;
 use \Spress\Lexer\Tokens\RightPar;
 use \Spress\Lexer\Tokens\Integer;

@@ -71,7 +71,7 @@ class TokenIterator implements TokenIteratorInterface
      */
     public function rewind()
     {
-        $this->position = 0;
+        $this->position = -1;
     }
 
     /**

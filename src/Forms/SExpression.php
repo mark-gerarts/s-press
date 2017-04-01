@@ -9,7 +9,13 @@ namespace Spress\Forms;
  */
 abstract class SExpression
 {
+    /**
+     * @return array
+     */
     abstract public function toList(): array;
 
+    /**
+     * @return bool
+     */
     abstract public function isList(): bool;
 }

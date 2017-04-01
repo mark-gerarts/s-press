@@ -30,6 +30,6 @@ class SNil extends SExpression
      */
     public function __toString(): string
     {
-        return 'nil';
+        return '()';
     }
 }
