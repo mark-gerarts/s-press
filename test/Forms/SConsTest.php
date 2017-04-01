@@ -39,4 +39,36 @@ class SConsTest extends \PHPUnit\Framework\TestCase
             ]
         ];
     }
+
+    public function testToListWorksAsExpected()
+    {
+        foreach ($this->getToListTestCases() as $description => $setup) {
+            list($input, $expected) = $setup;
+            $actual = $input->toList();
+            $this->assertEquals($expected, $actual, $description);
+        }
+    }
+
+    protected function getToListTestCases()
+    {
+        return [
+            'It should treat a single value as such' => [
+                new SCons(new SInteger(123), new SNil()),
+                [new SInteger(123)]
+            ],
+            'It should combine multiple values in a list' => [
+                new SCons(new SInteger(123), new SCons(
+                    new SSymbol('symbol'), new SNil()
+                ), new SNil()),
+                [new SInteger(123), new SSymbol('symbol')]
+            ],
+            'It should handle nested lists' => [
+                new SCons(new SInteger(123), new SCons(
+                    new SCons(new SInteger(321), new SNil()),
+                    new SNil()
+                )),
+                [new SInteger(123), new SCons(new SInteger(321), new SNil())]
+            ]
+        ];
+    }
 }
