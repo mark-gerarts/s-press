@@ -63,6 +63,23 @@ class LexerTest extends \PHPUnit\Framework\TestCase
                     new Id('another-symbol'),
                     new RightPar
                 ]
+            ],
+            'It should parse mixed values' => [
+                "(person
+                   (age 12) ; age in years
+                   (name Jake))", [
+                    new LeftPar,
+                    new Id('person'),
+                    new LeftPar,
+                    new Id('age'),
+                    new Integer(12),
+                    new RightPar,
+                    new LeftPar,
+                    new Id('name'),
+                    new Id('Jake'),
+                    new RightPar,
+                    new RightPar
+                ]
             ]
         ];
     }
