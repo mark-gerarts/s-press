@@ -25,13 +25,6 @@ abstract class LexerState
     abstract public function process(string $char): LexerState;
 
     /**
-     * Processes end of file.
-     *
-     * @return LexerState
-     */
-    abstract public function processEOF(): LexerState;
-
-    /**
      * @return SExpToken
      */
     public function getToken()

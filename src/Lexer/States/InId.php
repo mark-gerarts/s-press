@@ -39,12 +39,4 @@ class InId extends LexerState
 
         return new InId($this->id . $char);
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function processEOF(): LexerState
-    {
-        throw new UnexpectedCharacterException('EOF');
-    }
 }

@@ -37,12 +37,4 @@ class InWhitespace extends LexerState
                 return new InId($char);
         }
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function processEOF(): LexerState
-    {
-        return new Done;
-    }
 }

@@ -19,12 +19,4 @@ class InComment extends LexerState
             ? new InWhitespace
             : new InComment;
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function processEOF(): LexerState
-    {
-        return new Done;
-    }
 }

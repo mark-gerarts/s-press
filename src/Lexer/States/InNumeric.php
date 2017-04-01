@@ -41,12 +41,4 @@ class InNumeric extends LexerState
         // processed again.
         return new StepBack;
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function processEOF(): LexerState
-    {
-        return new Done;
-    }
 }
